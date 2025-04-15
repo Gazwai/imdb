@@ -16,5 +16,57 @@ data for #scrape_movie:
   year: 2008
 }
 
+  {
+    director: director,
+    cast: cast,
+    year: year,
+    title: title,
+    summary: summary
+  }
+
 "User-Agent" => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'
 "Accept-Language" => 'en'
+
+# Get the top 5 movies on this page: https://www.imdb.com/chart/top/
+
+# Create a method to scrape movie data from a specific movie page (ex. https://www.imdb.com/title/tt0111161/) - Title, Director, Cast, Year, Storyline, Rating
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  director = html_doc.search('.ipc-metadata-list-item__list-content-item.ipc-metadata-list-item__list-content-item--link')[0].text.strip
+  cast = html_doc.search('ul.ipc-metadata-list--dividers-all li:last-child li').first(3).map { |el| el.text.strip }
+  year = html_doc.search('.joVhBE li').first.text.strip.to_i
+  title = html_doc.search('.hero__primary-text').text.strip
+  summary = html_doc.search('.sc-42125d72-1.igbBrx').text.strip
